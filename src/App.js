@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Blade from './component/Blade';
+import BladeApp from './component/BladeApp';
 
 class App extends Component {
   render() {
     return (
       <div className="container">
-        <Blade />
+        <BladeApp />
       </div>
     );
   }

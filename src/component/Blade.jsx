@@ -1,16 +1,14 @@
-import React, {Component} from 'react';
-import BladeList from './BladeList';
+import React, { Component } from 'react'
+
 
 class Blade extends Component {
 
-    render() {
+    render () {
         return (
-            <>
-            <h1>Blades</h1>
-            <BladeList/>   
-            </> 
+            <h1>Blade Details </h1>
         )
     }
+
 }
 
 export default Blade;
