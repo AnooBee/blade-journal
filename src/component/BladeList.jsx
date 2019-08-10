@@ -25,10 +25,24 @@ class BladeList extends Component {
                 }
             )
     }
+
+    deleteBlade(id) {
+
+        BladeService.deleteBlade(id)
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({message:'Delete of blade successful'});
+                    this.refreshBlades();
+                }
+            )
+    }
+
     render() {
         return  (
             <div className="container">
                 <h3>All Blades</h3>
+                {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
                 <div className="container">
                     <table className="table">
                         <thead>
@@ -37,6 +51,7 @@ class BladeList extends Component {
                                 <th>Name</th>
                                 <th>Stars</th>
                                 <th>Notes</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,6 +63,8 @@ class BladeList extends Component {
                                             <td>{blade.name}</td>
                                             <td>{blade.stars}</td>
                                             <td>{blade.notes}</td>
+                                            <td><button className="btn btn-warning" onClick={() => this.deleteBlade(blade.id)}>Delete</button></td>
+
                                         </tr>
                                 )
                             }
