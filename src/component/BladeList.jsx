@@ -38,6 +38,11 @@ class BladeList extends Component {
             )
     }
 
+    updateBlade(id) {
+        console.log('in updateBlade id: '+id)
+        this.props.history.push(`/blades/${id}`)
+    }
+
     render() {
         return  (
             <div className="container">
@@ -51,6 +56,7 @@ class BladeList extends Component {
                                 <th>Name</th>
                                 <th>Stars</th>
                                 <th>Notes</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -64,6 +70,8 @@ class BladeList extends Component {
                                             <td>{blade.stars}</td>
                                             <td>{blade.notes}</td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteBlade(blade.id)}>Delete</button></td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateBlade(blade.id)}>Update</button></td>
+
 
                                         </tr>
                                 )
