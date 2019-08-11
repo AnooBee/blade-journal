@@ -34,9 +34,19 @@ class Blade extends Component {
     }
 
     onSubmit(values) {
-       
-        console.log(values);
+        console.log("in Submit. Values:"+ values);
+        let blade = {
+            id: this.state.id,
+            name: values.name,
+            stars: values.stars,
+            notes: values.notes
+        }
+
+        BladeService.updateBlade(this.state.id, blade)
+                .then(() => this.props.history.push('/blades'));
+
     }
+
 
     validate(values) {
         console.log("in validate: "+ values.stars);
@@ -79,8 +89,13 @@ class Blade extends Component {
                         {
                             (props) => (
                                 <Form>
-                                    <ErrorMessage name="description" component="div"
+                                    <ErrorMessage name="name" component="div"
                                         className="alert alert-warning" />
+                                     <ErrorMessage name="stars" component="div"
+                                        className="alert alert-warning" />
+                                     <ErrorMessage name="nots" component="div"
+                                        className="alert alert-warning" />
+                                    
                                     <fieldset className="form-group">
                                         <label>Id</label>
                                         <Field className="form-control" type="text" name="id" disabled />

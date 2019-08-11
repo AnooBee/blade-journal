@@ -14,6 +14,12 @@ class BladeService {
     retrieveBlade(id) {
         return axios.get(`http://localhost:8080/v1/blades/${id}`);
     }
+
+    updateBlade(id, blade) {
+        console.log("in service...updateBlade")
+
+        return axios.put(`http://localhost:8080/v1/blades/${id}`, blade);
+    }
 }
 
 export default new BladeService ()
