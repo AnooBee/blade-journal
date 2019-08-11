@@ -21,30 +21,21 @@ class Blade extends Component {
         console.log("id: "+this.state.id);
         // eslint-disable-next-line
         if (this.state.id === -1) {
-            //for adding new item
+            //for adding
             return
         }
-        this.getBlade(this.state.id);
+        this.getBlade(this.state.id);      
+    }
 
-        BladeService.retrieveBlade(this.state.id)
+    getBlade(id) {
+        BladeService.retrieveBlade(id)
             .then(
                 response => {
                     console.log(response);
                     this.setState({blade: response.data});
                 }
             )
-
     }
-
-    // getBlade(id) {
-    //     BladeService.retrieveBlade(id)
-    //         .then(
-    //             response => {
-    //                 console.log(response);
-    //                 this.setState({blade: response.data});
-    //             }
-    //         )
-    // }
 
     onSubmit(values) {
         console.log("in Submit. Values:"+ values);
