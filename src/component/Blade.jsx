@@ -19,19 +19,32 @@ class Blade extends Component {
 
     componentDidMount () {
         console.log("id: "+this.state.id);
+        // eslint-disable-next-line
+        if (this.state.id === -1) {
+            //for adding new item
+            return
+        }
         this.getBlade(this.state.id);
 
-    }
-
-    getBlade(id) {
-        BladeService.retrieveBlade(id)
+        BladeService.retrieveBlade(this.state.id)
             .then(
                 response => {
                     console.log(response);
                     this.setState({blade: response.data});
                 }
             )
+
     }
+
+    // getBlade(id) {
+    //     BladeService.retrieveBlade(id)
+    //         .then(
+    //             response => {
+    //                 console.log(response);
+    //                 this.setState({blade: response.data});
+    //             }
+    //         )
+    // }
 
     onSubmit(values) {
         console.log("in Submit. Values:"+ values);
@@ -42,8 +55,13 @@ class Blade extends Component {
             notes: values.notes
         }
 
-        BladeService.updateBlade(this.state.id, blade)
+        if (this.state.id === -1) {
+            BladeService.createBlade(blade)
                 .then(() => this.props.history.push('/blades'));
+        } else {
+            BladeService.updateBlade(this.state.id, blade)
+                .then(() => this.props.history.push('/blades'));
+        }
 
     }
 
@@ -76,7 +94,7 @@ class Blade extends Component {
     
         return (
             <div>
-                <h3>Course</h3>
+                <h3>Blade Details</h3>
                 <div className="container">
                     <Formik
                       onSubmit={this.onSubmit}

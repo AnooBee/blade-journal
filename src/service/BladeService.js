@@ -20,6 +20,12 @@ class BladeService {
 
         return axios.put(`http://localhost:8080/v1/blades/${id}`, blade);
     }
+
+    createBlade(blade) {
+        console.log("in service...createBlade")
+
+        return axios.post(`http://localhost:8080/v1/blades`, blade);
+    }
 }
 
 export default new BladeService ()

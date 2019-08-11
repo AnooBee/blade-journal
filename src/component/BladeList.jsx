@@ -9,7 +9,10 @@ class BladeList extends Component {
             blades:[],
             message: null
         }
-        this.refreshBlades = this.refreshBlades.bind(this)
+        this.refreshBlades = this.refreshBlades.bind(this);
+        this.addBladeClicked = this.addBladeClicked.bind(this);
+
+
     }
 
     componentDidMount() {
@@ -43,6 +46,11 @@ class BladeList extends Component {
         this.props.history.push(`/blades/${id}`)
     }
 
+    addBladeClicked () {
+        console.log('Add new blade');
+        this.props.history.push('/blades/-1');
+    }
+
     render() {
         return  (
             <div className="container">
@@ -72,12 +80,14 @@ class BladeList extends Component {
                                             <td><button className="btn btn-warning" onClick={() => this.deleteBlade(blade.id)}>Delete</button></td>
                                             <td><button className="btn btn-success" onClick={() => this.updateBlade(blade.id)}>Update</button></td>
 
-
                                         </tr>
                                 )
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+                        <button className="btn btn-success" onClick={this.addBladeClicked}>Add</button>
+                    </div>
                 </div>
             </div>
         );
